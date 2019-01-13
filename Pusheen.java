@@ -32,17 +32,18 @@ public class Pusheen extends Actor
         gravityIsBad();
     }
     private boolean onSolidThing() {
-       Actor groundObject = getOneIntersectingObject(Block.class);
-       //Actor groundObject = getOneObjectAtOffset(0,50,Block.class);
+       //Actor groundObject = getOneIntersectingObject(Block.class);
+       Actor groundObject = getOneObjectAtOffset(0,35,Block.class);
        //System.out.println(getY());
        //System.out.println(groundObject);
        return groundObject != null;
     }
     
     public void run() {
-        if (Greenfoot.isKeyDown("right")) move(speed); //bild entsprechend der laufrichtung ändern
-        if (Greenfoot.isKeyDown("left")) move(-speed);
+        if (Greenfoot.isKeyDown("right") && getOneObjectAtOffset(30, 0, Block.class) == null) move(speed); //bild entsprechend der laufrichtung ändern
+        if (Greenfoot.isKeyDown("left") && getOneObjectAtOffset(-30, 0, Block.class) == null) move(-speed);
     }
+    
     public void jump() {
         if (!Greenfoot.isKeyDown("up")) return;
         if (jumpCounter > 20) {
