@@ -4,6 +4,6 @@ public class MyWorld extends greenfoot.World
 {
     public MyWorld()
     {    
-        super(1200, 700, 1); 
+        super(1200, 700, 1, false); 
     }
 }

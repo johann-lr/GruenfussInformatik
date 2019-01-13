@@ -1,0 +1,62 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+// Main Actor class
+// Pusheen is a nice cat lol
+
+public class Pusheen extends Actor
+{
+    public int jumpHeight;
+    public int grav;
+    public int speed;
+    public int lifes;
+    public int levelTry;
+    public boolean isJumping; // to prevent running in the air
+    public int jumpCounter;
+    
+    public Pusheen() {
+        setImage("pusheen.png");
+        this.isJumping = false;
+        this.levelTry = 1;
+        this.jumpCounter = 0;
+        this.lifes = 3;
+        this.speed = 5;
+        this.jumpHeight = 50;
+        this.grav = 5;
+        //setImage() nach rechts, standardlaufrichtung gucken
+    }
+    
+    public void act() {
+        run();
+        jump();
+        if (!Greenfoot.isKeyDown("up")) isJumping = false;
+        gravityIsBad();
+    }
+    private boolean onSolidThing() {
+       Actor groundObject = getOneIntersectingObject(Block.class);
+       //Actor groundObject = getOneObjectAtOffset(0,50,Block.class);
+       //System.out.println(getY());
+       //System.out.println(groundObject);
+       return groundObject != null;
+    }
+    
+    public void run() {
+        if (Greenfoot.isKeyDown("right")) move(speed); //bild entsprechend der laufrichtung ändern
+        if (Greenfoot.isKeyDown("left")) move(-speed);
+    }
+    public void jump() {
+        if (!Greenfoot.isKeyDown("up")) return;
+        if (jumpCounter > 20) {
+            isJumping = false;
+            return;
+        }
+        System.out.println(jumpCounter);
+        isJumping = true;
+        setLocation(getX(), getY()-5);
+        jumpCounter++;
+    }
+    public void gravityIsBad() {
+        if (onSolidThing()||isJumping) return;
+        setLocation(getX(), getY()+grav);
+        if (onSolidThing()) jumpCounter = 0;
+    }
+}
