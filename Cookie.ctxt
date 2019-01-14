@@ -1,5 +1,5 @@
 #BlueJ class context
 comment0.target=Cookie
 comment1.params=
-comment1.target=void\ act()
+comment1.target=Cookie()
 numComments=2

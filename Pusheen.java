@@ -20,7 +20,7 @@ public class Pusheen extends Actor
         this.jumpCounter = 0;
         this.lifes = 3;
         this.speed = 5;
-        this.jumpHeight = 50;
+        this.jumpHeight = 20;
         this.grav = 5;
         //setImage() nach rechts, standardlaufrichtung gucken
     }
@@ -30,6 +30,8 @@ public class Pusheen extends Actor
         jump();
         if (!Greenfoot.isKeyDown("up")) isJumping = false;
         gravityIsBad();
+        eatYummyShit();
+        if (getY() > 1500) RIP(); // remove falling pusheens
     }
     private boolean onSolidThing() {
        //Actor groundObject = getOneIntersectingObject(Block.class);
@@ -46,11 +48,11 @@ public class Pusheen extends Actor
     
     public void jump() {
         if (!Greenfoot.isKeyDown("up")) return;
-        if (jumpCounter > 20) {
+        if (jumpCounter > jumpHeight) {
             isJumping = false;
             return;
         }
-        System.out.println(jumpCounter);
+        //System.out.println(jumpCounter);
         isJumping = true;
         setLocation(getX(), getY()-5);
         jumpCounter++;
@@ -59,5 +61,15 @@ public class Pusheen extends Actor
         if (onSolidThing()||isJumping) return;
         setLocation(getX(), getY()+grav);
         if (onSolidThing()) jumpCounter = 0;
+    }
+    public void eatYummyShit() {
+        if (getOneIntersectingObject(Cookie.class) != null) {
+            Actor toRemove = getOneIntersectingObject(Cookie.class);
+            getWorld().removeObject(toRemove);
+            speed += 3;
+        }
+    }
+    public void RIP() {
+        getWorld().removeObject(this);
     }
 }
