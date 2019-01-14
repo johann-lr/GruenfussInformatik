@@ -14,3 +14,25 @@ hs_err_pid*
 # macOS
 .DS_Store
 images/corkboard\.jpg
+
+doc/allclasses-frame\.html
+
+doc/allclasses-noframe\.html
+
+doc/constant-values\.html
+
+doc/index\.html
+
+doc/logfile\.txt
+
+doc/package-frame\.html
+
+doc/package-list
+
+doc/package-summary\.html
+
+doc/Pusheen\.html
+
+doc/script\.js
+
+doc/stylesheet\.css

@@ -15,6 +15,9 @@ public class Pusheen extends Actor {
     public int cookiePoints;
     private long timeStamp;
     public boolean isBoosted;
+    public int animationSpeed;
+    public int animationCounter;
+    public int imageCounter;
     
     public Pusheen() {
         setImage("pusheen-right.png");
@@ -27,6 +30,9 @@ public class Pusheen extends Actor {
         this.grav = 5;
         this.cookiePoints = 0;
         this.isBoosted = false;
+        this.animationSpeed = 5;
+        this.animationCounter = 0;
+        this.imageCounter = 1;
         //setImage() nach rechts, standardlaufrichtung gucken
     }
     
@@ -48,11 +54,23 @@ public class Pusheen extends Actor {
     
     public void run() {
         if (Greenfoot.isKeyDown("right") && getOneObjectAtOffset(30, 0, Block.class) == null) {
-            setImage("pusheen-right.png");
+            //setImage("pusheen-right.png");
+            if (animationCounter == animationSpeed) {
+                switchImageRight();
+                animationCounter = 0;
+                return;
+            }
+            else animationCounter++;
             move(speed);
         }
         if (Greenfoot.isKeyDown("left") && getOneObjectAtOffset(-30, 0, Block.class) == null) {
-            setImage("pusheen-left.png");
+            //setImage("pusheen-left.png");
+            if (animationCounter == animationSpeed) {
+                switchImageLeft();
+                animationCounter = 0;
+                return;
+            }
+            else animationCounter++;
             move(-speed);
         }
     }
@@ -102,5 +120,29 @@ public class Pusheen extends Actor {
 
     public void RIP() {
         getWorld().removeObject(this);
+    }
+    
+    public void switchImageLeft() {
+        if (imageCounter == 2) {
+            setImage("pusheen-walk-left-2.png");
+            imageCounter = 1;
+            return;
+        } else {
+            setImage("pusheen-walk-left-1.png");
+            imageCounter = 2;
+            return;
+        }
+    }
+    
+    public void switchImageRight() {
+        if (imageCounter == 2) {
+            setImage("pusheen-walk-right-2.png");
+            imageCounter = 1;
+            return;
+        } else {
+            setImage("pusheen-walk-right-1.png");
+            imageCounter = 2;
+            return;
+        }
     }
 }
