@@ -1,7 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-// objekt beim zusammentreffen entfernen, siehe Krabben-Szenario
-
+/**
+ * Write a description of class Cookie here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
 public class Cookie extends Objects
 {
     public Cookie() {

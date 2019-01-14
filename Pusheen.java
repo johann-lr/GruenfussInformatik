@@ -17,7 +17,7 @@ public class Pusheen extends Actor {
     public boolean isBoosted;
     
     public Pusheen() {
-        setImage("pusheen.png");
+        setImage("pusheen-right.png");
         this.isJumping = false;
         this.levelTry = 1;
         this.jumpCounter = 0;
@@ -47,8 +47,14 @@ public class Pusheen extends Actor {
     }
     
     public void run() {
-        if (Greenfoot.isKeyDown("right") && getOneObjectAtOffset(30, 0, Block.class) == null) move(speed); //bild entsprechend der laufrichtung ändern
-        if (Greenfoot.isKeyDown("left") && getOneObjectAtOffset(-30, 0, Block.class) == null) move(-speed);
+        if (Greenfoot.isKeyDown("right") && getOneObjectAtOffset(30, 0, Block.class) == null) {
+            setImage("pusheen-right.png");
+            move(speed);
+        }
+        if (Greenfoot.isKeyDown("left") && getOneObjectAtOffset(-30, 0, Block.class) == null) {
+            setImage("pusheen-left.png");
+            move(-speed);
+        }
     }
     
     public void jump() {

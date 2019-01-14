@@ -1,5 +1,6 @@
 #Greenfoot project file
 class.Block.image=sandstone.jpg
+class.Cookie.image=cookie.png
 class.Donut.image=donut.png
 class.Pusheen.image=elephant.png
 dependency1.from=Pusheen
@@ -33,14 +34,14 @@ readme.x=10
 readme.y=10
 simulation.speed=50
 target1.height=50
-target1.name=Cookie
+target1.name=Donut
 target1.showInterface=false
 target1.type=ClassTarget
 target1.width=80
 target1.x=0
 target1.y=0
 target2.height=50
-target2.name=Donut
+target2.name=Cookie
 target2.showInterface=false
 target2.type=ClassTarget
 target2.width=80
