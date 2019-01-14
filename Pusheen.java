@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 // Main Actor class
 // Pusheen is a nice cat lol
 
-public class Pusheen extends Actor
-{
+public class Pusheen extends Actor {
+
     public int jumpHeight;
     public int grav;
     public int speed;
@@ -12,6 +12,9 @@ public class Pusheen extends Actor
     public int levelTry;
     public boolean isJumping; // to prevent running in the air
     public int jumpCounter;
+    public int cookiePoints;
+    private long timeStamp;
+    public boolean isBoosted;
     
     public Pusheen() {
         setImage("pusheen.png");
@@ -22,9 +25,12 @@ public class Pusheen extends Actor
         this.speed = 5;
         this.jumpHeight = 20;
         this.grav = 5;
+        this.cookiePoints = 0;
+        this.isBoosted = false;
         //setImage() nach rechts, standardlaufrichtung gucken
     }
     
+    // act method
     public void act() {
         run();
         jump();
@@ -32,12 +38,11 @@ public class Pusheen extends Actor
         gravityIsBad();
         eatYummyShit();
         if (getY() > 1500) RIP(); // remove falling pusheens
+        clearPowerUps();
     }
+
     private boolean onSolidThing() {
-       //Actor groundObject = getOneIntersectingObject(Block.class);
        Actor groundObject = getOneObjectAtOffset(0,35,Block.class);
-       //System.out.println(getY());
-       //System.out.println(groundObject);
        return groundObject != null;
     }
     
@@ -57,18 +62,38 @@ public class Pusheen extends Actor
         setLocation(getX(), getY()-5);
         jumpCounter++;
     }
+
     public void gravityIsBad() {
         if (onSolidThing()||isJumping) return;
         setLocation(getX(), getY()+grav);
         if (onSolidThing()) jumpCounter = 0;
     }
+
     public void eatYummyShit() {
         if (getOneIntersectingObject(Cookie.class) != null) {
             Actor toRemove = getOneIntersectingObject(Cookie.class);
             getWorld().removeObject(toRemove);
+            cookiePoints++;
+        }
+        if (getOneIntersectingObject(Donut.class) != null) {
+            Actor toRemove = getOneIntersectingObject(Donut.class);
+            getWorld().removeObject(toRemove);
             speed += 3;
+            jumpHeight += 3;
+            isBoosted = true;
+            timeStamp = System.currentTimeMillis();            
         }
     }
+
+    public void clearPowerUps() {
+        if (!isBoosted) return;
+        if (System.currentTimeMillis() >= timeStamp + 10000) {
+            speed = 5;
+            jumpHeight = 20;
+            isBoosted = false;
+        }
+    }
+
     public void RIP() {
         getWorld().removeObject(this);
     }
