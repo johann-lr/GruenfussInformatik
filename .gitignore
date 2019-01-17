@@ -13,8 +13,8 @@ hs_err_pid*
 
 # macOS
 .DS_Store
-images/corkboard\.jpg
 
+# docs (auto created)
 doc/allclasses-frame\.html
 
 doc/allclasses-noframe\.html

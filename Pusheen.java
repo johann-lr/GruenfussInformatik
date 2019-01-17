@@ -10,7 +10,7 @@ public class Pusheen extends Actor {
     public int speed;
     public int lifes;
     public int levelTry;
-    public boolean isJumping; // to prevent running in the air
+    public boolean isJumping;
     public int jumpCounter;
     public int cookiePoints;
     private long timeStamp;
@@ -33,7 +33,6 @@ public class Pusheen extends Actor {
         this.animationSpeed = 5;
         this.animationCounter = 0;
         this.imageCounter = 1;
-        //setImage() nach rechts, standardlaufrichtung gucken
     }
     
     // act method
@@ -49,11 +48,12 @@ public class Pusheen extends Actor {
 
     private boolean onSolidThing() {
        Actor groundObject = getOneObjectAtOffset(0,35,Block.class);
-       return groundObject != null;
+       Actor movingGround = getOneObjectAtOffset(0, 35, MovingBlock.class);
+       return groundObject != null || movingGround != null;
     }
     
     public void run() {
-        if (Greenfoot.isKeyDown("right") && getOneObjectAtOffset(30, 0, Block.class) == null) {
+        if (Greenfoot.isKeyDown("right") && getOneObjectAtOffset(30, 0, Block.class) == null && getOneObjectAtOffset(30, 0, MovingBlock.class) == null) {
             //setImage("pusheen-right.png");
             if (animationCounter == animationSpeed) {
                 switchImageRight();
@@ -63,7 +63,7 @@ public class Pusheen extends Actor {
             else animationCounter++;
             move(speed);
         }
-        if (Greenfoot.isKeyDown("left") && getOneObjectAtOffset(-30, 0, Block.class) == null) {
+        if (Greenfoot.isKeyDown("left") && getOneObjectAtOffset(-30, 0, Block.class) == null && getOneObjectAtOffset(-30, 0, MovingBlock.class) == null) {
             //setImage("pusheen-left.png");
             if (animationCounter == animationSpeed) {
                 switchImageLeft();

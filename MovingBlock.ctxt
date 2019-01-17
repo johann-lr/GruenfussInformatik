@@ -1,9 +1,11 @@
 #BlueJ class context
 comment0.target=MovingBlock
-comment1.params=range\ speed\ moving
-comment1.target=MovingBlock(int,\ int,\ boolean)
+comment1.params=range\ speed\ moving\ vertical\ startDirection
+comment1.target=MovingBlock(int,\ int,\ boolean,\ boolean,\ boolean)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
 comment3.target=void\ movePlatform()
-numComments=4
+comment4.params=
+comment4.target=void\ pusheenIsOnBlock()
+numComments=5
