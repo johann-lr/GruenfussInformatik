@@ -18,6 +18,7 @@ public class Pusheen extends Actor {
     public int animationSpeed;
     public int animationCounter;
     public int imageCounter;
+    public int[] startPos = {0, 0};
     
     public Pusheen() {
         setImage("pusheen-right.png");
@@ -37,9 +38,14 @@ public class Pusheen extends Actor {
     
     // act method
     public void act() {
+        if (startPos[0] == 0) {
+            startPos[0] = getX();
+            startPos[1] = getY();
+        }
         run();
         jump();
         if (!Greenfoot.isKeyDown("up")) isJumping = false;
+        if (getOneIntersectingObject(Fire.class) != null) RIP();
         gravityIsBad();
         eatYummyShit();
         if (getY() > 1500) RIP(); // remove falling pusheens
@@ -119,7 +125,9 @@ public class Pusheen extends Actor {
     }
 
     public void RIP() {
-        getWorld().removeObject(this);
+        World world = getWorld();
+        world.removeObject(this);
+        world.addObject(new Pusheen(), startPos[0], startPos[1]);
     }
     
     public void switchImageLeft() {
