@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=BadPusheen
+comment1.params=range\ speed\ moving
+comment1.target=BadPusheen(int,\ int,\ boolean)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ moveBP()
+numComments=4

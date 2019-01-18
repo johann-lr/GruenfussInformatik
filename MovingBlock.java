@@ -13,6 +13,7 @@ public class MovingBlock extends Objects
     public boolean startDirection; // if true block starts to the right
 
     public MovingBlock(int range, int speed, boolean moving, boolean vertical, boolean startDirection) {
+        setImage("plattform.png");
         this.range = range;
         this.speed = speed;
         this.moving = moving;

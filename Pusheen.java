@@ -45,10 +45,10 @@ public class Pusheen extends Actor {
         run();
         jump();
         if (!Greenfoot.isKeyDown("up")) isJumping = false;
-        if (getOneIntersectingObject(Fire.class) != null) RIP();
         gravityIsBad();
         eatYummyShit();
-        if (getY() > 1500) RIP(); // remove falling pusheens
+        // remove falling pusheens
+        if (getOneIntersectingObject(Fire.class) != null || getY() > 1500 || getOneIntersectingObject(BadPusheen.class) != null) RIP();
         clearPowerUps();
     }
 
