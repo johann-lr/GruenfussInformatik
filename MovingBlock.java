@@ -30,7 +30,6 @@ public class MovingBlock extends Objects
         if (moving) {
             movePlatform();
         }
-        pusheenIsOnBlock();
     }    
 
     public void movePlatform() {
@@ -44,13 +43,6 @@ public class MovingBlock extends Objects
             else setLocation(getX(), getY() - speed);
             if (startDirection && getY() >= max) startDirection = false;
             else if (!startDirection && getY() <= min) startDirection = true;
-        }
-    }
-
-    public void pusheenIsOnBlock() {
-        if (getOneObjectAtOffset(0,35,Pusheen.class) != null) {
-            Actor pusheen = getOneObjectAtOffset(0,35,Pusheen.class);
-            //pusheen.setLocation()
         }
     }
 }

@@ -12,3 +12,4 @@ Greenfoot Readme: README.txt
 ### Unwichtiges
 
 pusheen.com - Claire Belton & Andrew Duff
+clipart-library.com

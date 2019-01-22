@@ -6,6 +6,4 @@ comment2.params=
 comment2.target=void\ act()
 comment3.params=
 comment3.target=void\ movePlatform()
-comment4.params=
-comment4.target=void\ pusheenIsOnBlock()
-numComments=5
+numComments=4

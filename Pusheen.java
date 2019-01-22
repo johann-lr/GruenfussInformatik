@@ -47,6 +47,7 @@ public class Pusheen extends Actor {
         if (!Greenfoot.isKeyDown("up")) isJumping = false;
         gravityIsBad();
         eatYummyShit();
+        onMovingBlock();
         // remove falling pusheens
         if (getOneIntersectingObject(Fire.class) != null || getY() > 1500 || getOneIntersectingObject(BadPusheen.class) != null) RIP();
         clearPowerUps();
@@ -151,6 +152,14 @@ public class Pusheen extends Actor {
             setImage("pusheen-walk-right-1.png");
             imageCounter = 2;
             return;
+        }
+    }
+
+    public void onMovingBlock() {
+        if (getOneObjectAtOffset(0,35,MovingBlock.class) != null) {
+            Actor block = getOneIntersectingObject(MovingBlock.class);
+            if (Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("right")) return;
+            setLocation(block.getX(), block.getY() + -50);
         }
     }
 }
