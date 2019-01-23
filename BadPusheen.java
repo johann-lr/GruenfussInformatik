@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class BadPusheen extends Actor
+public class BadPusheen extends Objects
 {
     
     private int range;

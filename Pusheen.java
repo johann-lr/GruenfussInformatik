@@ -20,6 +20,7 @@ public class Pusheen extends Actor {
     public int imageCounter;
     public int[] startPos = {0, 0};
     
+    
     public Pusheen() {
         setImage("pusheen-right.png");
         this.isJumping = false;
@@ -127,6 +128,10 @@ public class Pusheen extends Actor {
 
     public void RIP() {
         World world = getWorld();
+        int width = world.getWidth();
+        int height = world.getHeight();
+        world.showText("Du hast Pusheen in den Tod geführt!!", width/2, height/2);
+        world.showText("", width/2, height/2);
         world.removeObject(this);
         world.addObject(new Pusheen(), startPos[0], startPos[1]);
     }
@@ -159,7 +164,7 @@ public class Pusheen extends Actor {
         if (getOneObjectAtOffset(0,35,MovingBlock.class) != null) {
             Actor block = getOneIntersectingObject(MovingBlock.class);
             if (Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("right")) return;
-            setLocation(block.getX(), block.getY() + -50);
+            setLocation(block.getX(), block.getY() +-50);
         }
     }
 }

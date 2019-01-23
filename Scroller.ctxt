@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Scroller
+comment1.params=world\ image
+comment1.target=Scroller(greenfoot.World,\ greenfoot.GreenfootImage)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=dsx\ dsy
+comment3.target=void\ scroll(int,\ int)
+numComments=4
