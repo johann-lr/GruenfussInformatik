@@ -17,8 +17,11 @@ public class MyWorld extends greenfoot.World
         scroller = new Scroller(this, bgImage);
         addObject(new Pusheen(),120,450);
         addObject(new Block(),120,550);
-        //X120 Y450
-        //movedRight = 0;
+        addObject(new Heart(),1150,50);
+        addObject(new Heart(),1080,50);
+        addObject(new Heart(),1010,50);
+        addObject(new Heart(),940,50);
+        addObject(new Heart(),870,50);
         isWorldNew = true;
         levelCreator();
     }

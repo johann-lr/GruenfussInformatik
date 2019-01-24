@@ -8,7 +8,7 @@ public class Pusheen extends Actor {
     public int jumpHeight;
     public int grav;
     public int speed;
-    public int lifes;
+    public static int lifes;
     public int levelTry;
     public boolean isJumping;
     public int jumpCounter;
@@ -20,13 +20,16 @@ public class Pusheen extends Actor {
     public int imageCounter;
     public int[] startPos = {0, 0};
     public int gravityIsEvenMoreBad;
+    public int lastSolidX;
+    public int lastSolidY;
+    public boolean noAcceleration;
     
     public Pusheen() {
         setImage("pusheen-right.png");
         this.isJumping = false;
         this.levelTry = 1;
         this.jumpCounter = 0;
-        this.lifes = 3;
+        this.lifes = 5;
         this.speed = 5;
         this.jumpHeight = 20;
         this.grav = 5;
@@ -35,6 +38,7 @@ public class Pusheen extends Actor {
         this.animationSpeed = 5;
         this.animationCounter = 0;
         this.imageCounter = 1;
+        this.noAcceleration = false;
     }
     
     // act method
@@ -43,6 +47,7 @@ public class Pusheen extends Actor {
             startPos[0] = getX();
             startPos[1] = getY();
         }
+        lastSolidCoords();
         run();
         jump();
         if (!Greenfoot.isKeyDown("space")) isJumping = false;
@@ -53,6 +58,7 @@ public class Pusheen extends Actor {
         if (getOneIntersectingObject(Fire.class) != null || getY() > 1500 || getOneIntersectingObject(BadPusheen.class) != null) RIP();
         if (getOneIntersectingObject(EndFlag.class) != null) getWorld().showText("Du hast das Level geschafft!", 600, 350);
         clearPowerUps();
+        if (getY() > 800) RIP();
     }
 
     private boolean onSolidThing() {
@@ -120,10 +126,14 @@ public class Pusheen extends Actor {
     public void gravityIsBad() {
         if (onSolidThing()||isJumping) return;
         gravityIsEvenMoreBad++;
+        if (noAcceleration) {
+            setLocation(getX(), getY()+grav);
+        }
         setLocation(getX(), getY()+grav+gravityIsEvenMoreBad/2);
         if (onSolidThing()) {
             jumpCounter = 0;
             gravityIsEvenMoreBad = 0;
+            noAcceleration = false;
         }
     }
 
@@ -156,13 +166,18 @@ public class Pusheen extends Actor {
         World world = getWorld();
         int width = world.getWidth();
         int height = world.getHeight();
-        world.removeObject(this);
-        lifes--;
+        gravityIsEvenMoreBad = 0;
+        jumpCounter = 0;
+        setLocation(lastSolidX, 30);
+        lifes = lifes -1;
+        //System.out.println(lifes);
         if (lifes == 0) {
             world.showText("Du hast verloren! :(", width/2, height/2);
-            return Greenfoot.setWorld(new MyWorld()); // just create new world after death to respawn easily ;)
+            Greenfoot.delay(100);
+            Greenfoot.setWorld(new MyWorld()); // just create new world after death to respawn easily ;)
+            return;
         }
-        //world.addObject(new Pusheen(), startPos[0], startPos[1]);
+        noAcceleration = true;
     }
     
     public void switchImageLeft() {
@@ -195,5 +210,18 @@ public class Pusheen extends Actor {
             if (Greenfoot.isKeyDown("space") || Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("right")) return;
             setLocation(block.getX(), block.getY() +-50);
         }
+    }
+    
+    public void lastSolidCoords() {
+        if (onSolidThingForCoords()) {
+            lastSolidX = getX();
+            lastSolidY = getY();
+        }
+    }
+    
+    private boolean onSolidThingForCoords() {
+       Actor groundObject = getOneObjectAtOffset(0,50,Block.class);
+       Actor movingGround = getOneObjectAtOffset(0, 50, MovingBlock.class);
+       return groundObject != null || movingGround != null;
     }
 }

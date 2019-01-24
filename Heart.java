@@ -1,19 +1,28 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
-/**
- * Write a description of class Heart here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class Heart extends Objects
+public class Heart extends Actor
 {
-    /**
-     * Act - do whatever the Heart wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+
     public void act() 
     {
-        // Add your action code here.
+        World world = getWorld();
+        
+        List objectslookingfor = world.getObjects(Heart.class);
+        if (objectslookingfor.size() == 5) {
+            if (getX() == 870 && Pusheen.lifes <5) world.removeObject(this);
+        }
+        if (objectslookingfor.size() == 4) {
+            if (getX() == 940 && Pusheen.lifes <4) world.removeObject(this);
+        }
+        if (objectslookingfor.size() == 3) {
+            if (getX() == 1010 && Pusheen.lifes <3) world.removeObject(this);
+        }
+        if (objectslookingfor.size() == 2) {
+            if (getX() == 1080 && Pusheen.lifes <2) world.removeObject(this);
+        }
+        if (objectslookingfor.size() == 1) {
+            if (getX() == 1150 && Pusheen.lifes <1) world.removeObject(this);
+        }
     }    
 }
