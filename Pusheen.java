@@ -51,6 +51,7 @@ public class Pusheen extends Actor {
         onMovingBlock();
         // remove falling pusheens
         if (getOneIntersectingObject(Fire.class) != null || getY() > 1500 || getOneIntersectingObject(BadPusheen.class) != null) RIP();
+        if (getOneIntersectingObject(EndFlag.class) != null) getWorld().showText("Du hast das Level geschafft!", 600, 350);
         clearPowerUps();
     }
 

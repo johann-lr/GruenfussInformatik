@@ -1,48 +1,75 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
+import java.util.ArrayList;
 
 public class MovingBlock extends Objects
 {
-    private int range;  // value in greenfoot world coordinates between the block should move - startValue +- range
-    private int speed; // value describing how many steps block should be moved in one "act"
+    private int movingSpeed;
+    private int distance;
+    private int angle;
+    private double velX, velY;
+    
+    private double distanceTraveled;
+    
     private boolean moving;
+    private boolean movingBack = false;
 
-    public int startX;
-    private int max;
-    private int min;
-    public boolean vertical; // whether block moves vertical or horizontal
-    public boolean startDirection; // if true block starts to the right
-
-    public MovingBlock(int range, int speed, boolean moving, boolean vertical, boolean startDirection) {
-        setImage("plattform.png");
-        this.range = range;
-        this.speed = speed;
+    public MovingBlock(int angle, int movingSpeed, int distance, boolean moving) {
+        this.angle = angle;
+        this.movingSpeed = movingSpeed;
+        this.distance = distance;
         this.moving = moving;
-        this.vertical = vertical;
-        this.startDirection = startDirection;
+        velX = Math.cos(Math.toRadians(angle)) * movingSpeed;
+        velY = Math.sin(Math.toRadians(angle)) * movingSpeed;
     }
-
+    
     public void act() {
-        if (startX == 0) {
-            startX = getX();
-            max = startX + range;
-            min = startX - range;
-        }
+        run();
+    }
+    
+    public void run() {
         if (moving) {
-            movePlatform();
+            if (distanceTraveled >= distance) {
+                velX = -velX;
+                velY = -velY;
+                distanceTraveled = -(distanceTraveled - distance);
+                movingBack = !movingBack;
+            }
+            move();
         }
-    }    
-
-    public void movePlatform() {
-        if (vertical) {
-            if (startDirection) setLocation(getX() + speed, getY());
-            else setLocation(getX() - speed, getY());
-            if (startDirection && getX() >= max) startDirection = false;
-            else if (!startDirection && getX() <= min) startDirection = true;
-        } else {
-            if (startDirection) setLocation(getX(), getY() + speed);
-            else setLocation(getX(), getY() - speed);
-            if (startDirection && getY() >= max) startDirection = false;
-            else if (!startDirection && getY() <= min) startDirection = true;
-        }
+    }
+    
+    public void move() {
+        distanceTraveled += Math.hypot(velX, velY);
+        setLocation(getX() + (int)Math.floor(velX), getY() + (int)Math.floor(velY));
+    }
+    
+    public int getStartingX() {
+        return (int) (getX() - (Math.cos(Math.toRadians(angle)) * (movingBack ? distance - distanceTraveled : distanceTraveled)));
+    }
+    public int getStartingY() {
+        return (int) (getY() - (Math.sin(Math.toRadians(angle)) * (movingBack ? distance - distanceTraveled : distanceTraveled)));
+    }
+    
+    public int getMovingSpeed() {
+        return movingSpeed;
+    }
+    public void setMovingSpeed(int movingSpeed) {
+        this.movingSpeed = movingSpeed;
+    }
+    
+    public int getMovingAngle() {
+        return angle;
+    }
+    
+    public int getDistance() {
+        return distance;
+    }
+    
+    public boolean isActivated() {
+        return moving;
+    }
+    public void setActivated(boolean activated) {
+        this.moving = activated;
     }
 }
