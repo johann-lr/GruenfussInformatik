@@ -48,14 +48,23 @@ public class MyWorld extends greenfoot.World
             for (int i = 1; i <= 100; i++) {
                 newX = oldX + Greenfoot.getRandomNumber(60) + 80;
                 newY = oldY + Greenfoot.getRandomNumber(200) - 100;
+                int randomMovingIn = Greenfoot.getRandomNumber(10)+1;
                 
                 while (newY > 666 | newY < 190) {
                     newY = oldY + Greenfoot.getRandomNumber(200) - 100;
                 }
-                
-                addObject(new Block(),newX,newY);
+                if (randomMovingIn == 10) addObject(new MovingBlock(0, 1, 20, true), newX, newY);
+                else addObject(new Block(),newX,newY);
                 oldX = newX;
                 oldY = newY;
+            }
+            for (Object obj : getObjects(Block.class)) {
+                int rdm = Greenfoot.getRandomNumber(10) +1;
+                Actor actor = (Actor) obj;
+                int y = actor.getY();
+                int x = actor.getX();
+                if (rdm == 1) addObject(new Cookie(), x, y - 50);
+                if (rdm == 10) addObject(new Donut(), x, y -50);
             }
             
         }
