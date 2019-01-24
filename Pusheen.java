@@ -19,7 +19,7 @@ public class Pusheen extends Actor {
     public int animationCounter;
     public int imageCounter;
     public int[] startPos = {0, 0};
-    
+    public int gravityIsEvenMoreBad;
     
     public Pusheen() {
         setImage("pusheen-right.png");
@@ -91,14 +91,39 @@ public class Pusheen extends Actor {
         }
         //System.out.println(jumpCounter);
         isJumping = true;
-        setLocation(getX(), getY()-5);
         jumpCounter++;
+        if (jumpCounter<5) {
+            setLocation(getX(), getY()-10);
+            return;
+        } else if (jumpCounter<10) {
+            setLocation(getX(), getY()-9);
+            return;
+        } else if (jumpCounter<14) {
+            setLocation(getX(), getY()-7);
+            return;
+        } else if (jumpCounter<16) {
+            setLocation(getX(), getY()-5);
+            return;
+        } else if (jumpCounter<18) {
+            setLocation(getX(), getY()-4);
+            return;
+        } else if (jumpCounter<19) {
+            setLocation(getX(), getY()-3);
+            return;
+        } else {
+            setLocation(getX(), getY()-1);
+            return;
+        }
     }
 
     public void gravityIsBad() {
         if (onSolidThing()||isJumping) return;
-        setLocation(getX(), getY()+grav);
-        if (onSolidThing()) jumpCounter = 0;
+        gravityIsEvenMoreBad++;
+        setLocation(getX(), getY()+grav+gravityIsEvenMoreBad/2);
+        if (onSolidThing()) {
+            jumpCounter = 0;
+            gravityIsEvenMoreBad = 0;
+        }
     }
 
     public void eatYummyShit() {
@@ -111,7 +136,7 @@ public class Pusheen extends Actor {
             Actor toRemove = getOneIntersectingObject(Donut.class);
             getWorld().removeObject(toRemove);
             speed += 3;
-            jumpHeight += 3;
+            jumpHeight += 10;
             isBoosted = true;
             timeStamp = System.currentTimeMillis();            
         }
