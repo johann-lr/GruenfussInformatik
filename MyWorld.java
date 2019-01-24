@@ -28,11 +28,15 @@ public class MyWorld extends greenfoot.World
     }
 
     public void moveWorld() {
-        int moveSpeed = 5;
+        int moveSpeed = 3;
         int x = 0;
         int y = 0;
-        if (Greenfoot.isKeyDown("right")) x++;
-        if (Greenfoot.isKeyDown("left")) x--;
+        //if (Greenfoot.isKeyDown("right")) x++;
+        //if (Greenfoot.isKeyDown("left")) x--;
+        Actor pusheenObj = getObjects(Pusheen.class).get(0);
+        if (pusheenObj.getX() > 600) x++;
+        //else x--;
+
         scroller.scroll(x*moveSpeed, y);
     }
         

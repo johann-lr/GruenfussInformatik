@@ -2,6 +2,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 import java.util.ArrayList;
 
+// angle code (with sin/cos) is inspired by a guy from the greenfoot.org page
+
 public class MovingBlock extends Objects
 {
     private int movingSpeed;
@@ -49,27 +51,5 @@ public class MovingBlock extends Objects
     }
     public int getStartingY() {
         return (int) (getY() - (Math.sin(Math.toRadians(angle)) * (movingBack ? distance - distanceTraveled : distanceTraveled)));
-    }
-    
-    public int getMovingSpeed() {
-        return movingSpeed;
-    }
-    public void setMovingSpeed(int movingSpeed) {
-        this.movingSpeed = movingSpeed;
-    }
-    
-    public int getMovingAngle() {
-        return angle;
-    }
-    
-    public int getDistance() {
-        return distance;
-    }
-    
-    public boolean isActivated() {
-        return moving;
-    }
-    public void setActivated(boolean activated) {
-        this.moving = activated;
     }
 }
