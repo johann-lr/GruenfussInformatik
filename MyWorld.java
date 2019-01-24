@@ -45,7 +45,7 @@ public class MyWorld extends greenfoot.World
             oldX = 120;
             oldY = 550;
             
-            for (int i = 1; i <= 100; i++) {
+            for (int i = 1; i <= 70; i++) {
                 newX = oldX + Greenfoot.getRandomNumber(60) + 80;
                 newY = oldY + Greenfoot.getRandomNumber(200) - 100;
                 int randomMovingIn = Greenfoot.getRandomNumber(10)+1;
@@ -57,6 +57,7 @@ public class MyWorld extends greenfoot.World
                 else addObject(new Block(),newX,newY);
                 oldX = newX;
                 oldY = newY;
+                if (i == 70) addObject(new EndFlag(), oldX, oldY);
             }
             for (Object obj : getObjects(Block.class)) {
                 int rdm = Greenfoot.getRandomNumber(10) +1;
