@@ -50,4 +50,8 @@ public class Scroller extends Actor
         actor.setLocation(actor.getX()-dsx, actor.getY()-dsy);
     }
 }
+
+    public int getScrolledX() {
+        return scrolledX;
+    }
 }

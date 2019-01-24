@@ -155,10 +155,13 @@ public class Pusheen extends Actor {
         World world = getWorld();
         int width = world.getWidth();
         int height = world.getHeight();
-        world.showText("Du hast Pusheen in den Tod geführt!!", width/2, height/2);
-        world.showText("", width/2, height/2);
-        world.removeObject(this);
-        world.addObject(new Pusheen(), startPos[0], startPos[1]);
+        //world.showText("Du hast Pusheen in den Tod geführt!!", width/2, height/2);
+        //world.showText("", width/2, height/2);
+        //world.removeObject(this);
+        //lifes--;
+        //if (lifes == 0) world.showText("Du hast verloren! :(", width/2, height/2);
+        Greenfoot.setWorld(new MyWorld()); // just create new world after death to respawn easily ;)
+        //world.addObject(new Pusheen(), startPos[0], startPos[1]);
     }
     
     public void switchImageLeft() {

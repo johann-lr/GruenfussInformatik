@@ -1,9 +1,13 @@
 #BlueJ class context
 comment0.target=Scroller
+comment0.text=\n\ This\ class\ is\ not\ self-written\n\ Copied\ Scroller.class\ to\ move\ world\ from\ greenfoot.org\n\ @author\ https\://www.greenfoot.org/users/2991\n
 comment1.params=world\ image
 comment1.target=Scroller(greenfoot.World,\ greenfoot.GreenfootImage)
+comment1.text=\n\ @param\ world\ greenfoot\ world\n\ @param\ image\ background\ image\ of\ game\ world\n
 comment2.params=
 comment2.target=void\ act()
 comment3.params=dsx\ dsy
 comment3.target=void\ scroll(int,\ int)
-numComments=4
+comment4.params=
+comment4.target=int\ getScrolledX()
+numComments=5

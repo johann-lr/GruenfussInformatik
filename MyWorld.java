@@ -4,6 +4,7 @@ public class MyWorld extends greenfoot.World
 {
     
     Scroller scroller;
+    //public int movedRight;
     
     public MyWorld() {    
         super(1200, 700, 1, false);
@@ -12,6 +13,7 @@ public class MyWorld extends greenfoot.World
         addObject(new Pusheen(),120,450);
         addObject(new Block(),120,550);
         //X120 Y450
+        //movedRight = 0;
     }
 
     public void act() {
@@ -19,11 +21,15 @@ public class MyWorld extends greenfoot.World
     }
 
     public void moveWorld() {
-        int moveSpeed = 2;
+        int moveSpeed = 5;
         int x = 0;
         int y = 0;
         if (Greenfoot.isKeyDown("right")) x++;
         if (Greenfoot.isKeyDown("left")) x--;
         scroller.scroll(x*moveSpeed, y);
+    }
+    
+    public Scroller getScroller() {
+        return scroller;
     }
 }

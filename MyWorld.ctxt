@@ -6,4 +6,6 @@ comment2.params=
 comment2.target=void\ act()
 comment3.params=
 comment3.target=void\ moveWorld()
-numComments=4
+comment4.params=
+comment4.target=Scroller\ getScroller()
+numComments=5
