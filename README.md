@@ -13,3 +13,4 @@ Greenfoot Readme: README.txt
 
 pusheen.com - Claire Belton & Andrew Duff
 clipart-library.com
+http://worldartsme.com/stretch/landscape-clipart.html (Hintergrund)

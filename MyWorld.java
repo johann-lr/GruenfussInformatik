@@ -8,7 +8,7 @@ public class MyWorld extends greenfoot.World
     
     public MyWorld() {    
         super(1200, 700, 1, false);
-        GreenfootImage bgImage = new GreenfootImage("bg.png");
+        GreenfootImage bgImage = new GreenfootImage("bg2.png");
         scroller = new Scroller(this, bgImage);
         addObject(new Pusheen(),120,450);
         addObject(new Block(),120,550);
