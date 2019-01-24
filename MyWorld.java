@@ -46,8 +46,13 @@ public class MyWorld extends greenfoot.World
             oldY = 550;
             
             for (int i = 1; i <= 100; i++) {
-                newX = oldX + Greenfoot.getRandomNumber(100) + 20;
+                newX = oldX + Greenfoot.getRandomNumber(60) + 80;
                 newY = oldY + Greenfoot.getRandomNumber(200) - 100;
+                
+                while (newY > 666 | newY < 190) {
+                    newY = oldY + Greenfoot.getRandomNumber(200) - 100;
+                }
+                
                 addObject(new Block(),newX,newY);
                 oldX = newX;
                 oldY = newY;
