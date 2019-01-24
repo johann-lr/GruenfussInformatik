@@ -192,7 +192,7 @@ public class Pusheen extends Actor {
     public void onMovingBlock() {
         if (getOneObjectAtOffset(0,35,MovingBlock.class) != null) {
             Actor block = getOneIntersectingObject(MovingBlock.class);
-            if (Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("right")) return;
+            if (Greenfoot.isKeyDown("space") || Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("right")) return;
             setLocation(block.getX(), block.getY() +-50);
         }
     }
