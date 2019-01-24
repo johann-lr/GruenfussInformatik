@@ -45,7 +45,7 @@ public class Pusheen extends Actor {
         }
         run();
         jump();
-        if (!Greenfoot.isKeyDown("up")) isJumping = false;
+        if (!Greenfoot.isKeyDown("space")) isJumping = false;
         gravityIsBad();
         eatYummyShit();
         onMovingBlock();
@@ -85,7 +85,7 @@ public class Pusheen extends Actor {
     }
     
     public void jump() {
-        if (!Greenfoot.isKeyDown("up")) return;
+        if (!Greenfoot.isKeyDown("space")) return;
         if (jumpCounter > jumpHeight) {
             isJumping = false;
             return;
