@@ -35,7 +35,7 @@ public class MyWorld extends greenfoot.World
         //if (Greenfoot.isKeyDown("left")) x--;
         Actor pusheenObj = getObjects(Pusheen.class).get(0);
         if (pusheenObj.getX() > 600) x++;
-        //else x--;
+        else if (pusheenObj.getX() < 600 && Greenfoot.isKeyDown("left")) x--;
 
         scroller.scroll(x*moveSpeed, y);
     }
