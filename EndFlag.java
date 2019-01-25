@@ -1,4 +1,2 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
-
+import greenfoot.*;
 public class EndFlag extends Objects {}

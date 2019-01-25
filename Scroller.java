@@ -46,8 +46,10 @@ public class Scroller extends Actor
             world.setBackground(hold);
         }
     for (Object obj : world.getObjects(null)) {
-        Actor actor = (Actor) obj;
-        actor.setLocation(actor.getX()-dsx, actor.getY()-dsy);
+        if (obj.getClass() != Heart.class && obj.getClass() != Score.class) {
+            Actor actor = (Actor) obj;
+            actor.setLocation(actor.getX()-dsx, actor.getY()-dsy);
+        }
     }
 }
 

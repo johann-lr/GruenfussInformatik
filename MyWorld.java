@@ -22,6 +22,7 @@ public class MyWorld extends greenfoot.World
         addObject(new Heart(),1010,50);
         addObject(new Heart(),940,50);
         addObject(new Heart(),870,50);
+        addObject(new Score(),1150, 115);
         isWorldNew = true;
         levelCreator();
     }
@@ -56,7 +57,11 @@ public class MyWorld extends greenfoot.World
                 while (newY > 666 | newY < 190) {
                     newY = oldY + Greenfoot.getRandomNumber(200) - 100;
                 }
-                if (randomMovingIn == 10) addObject(new MovingBlock(0, 1, 20, true), newX, newY);
+                if (randomMovingIn == 10) {
+                    int randomSpeed = Greenfoot.getRandomNumber(3)+1;
+                    int randomDistance = Greenfoot.getRandomNumber(24)+15;
+                    addObject(new MovingBlock(0, randomSpeed, randomDistance, true), newX, newY);
+                }
                 else addObject(new Block(),newX,newY);
                 oldX = newX;
                 oldY = newY;

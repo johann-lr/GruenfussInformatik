@@ -9,7 +9,6 @@ public class Pusheen extends Actor {
     public int grav;
     public int speed;
     public static int lifes;
-    public int levelTry;
     public boolean isJumping;
     public int jumpCounter;
     public int cookiePoints;
@@ -27,7 +26,6 @@ public class Pusheen extends Actor {
     public Pusheen() {
         setImage("pusheen-right.png");
         this.isJumping = false;
-        this.levelTry = 1;
         this.jumpCounter = 0;
         this.lifes = 5;
         this.speed = 5;
@@ -142,6 +140,7 @@ public class Pusheen extends Actor {
             Actor toRemove = getOneIntersectingObject(Cookie.class);
             getWorld().removeObject(toRemove);
             cookiePoints++;
+            getWorld().getObjects(Score.class).get(0).incScore(cookiePoints);
         }
         if (getOneIntersectingObject(Donut.class) != null) {
             Actor toRemove = getOneIntersectingObject(Donut.class);
