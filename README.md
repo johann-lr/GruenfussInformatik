@@ -9,8 +9,8 @@ SuperMario-ähnliches Spiel in dem Pusheen einen (später evtl sogar zufällig g
 
 Greenfoot Readme: README.txt
 
-### Unwichtiges
+### Kleingedrucktes
 
 pusheen.com - Claire Belton & Andrew Duff
-clipart-library.com
+clipart-library.com (some images)
 http://worldartsme.com/stretch/landscape-clipart.html (Hintergrund)
