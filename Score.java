@@ -1,5 +1,10 @@
 import greenfoot.*;
 
+/**
+ * @author Johann Laur, greenfoot.org example
+ * Score label to show how many cookies pusheen did eat
+ */
+
 public class Score extends Actor {
 
     private GreenfootImage image;
@@ -16,6 +21,4 @@ public class Score extends Actor {
         String string = String.format("Cookie Score: %s", score);
         img.drawString(string, 2, 20);
     }
-    
-    public void act() {}
 }

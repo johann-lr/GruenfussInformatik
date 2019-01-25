@@ -1,5 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/**
+ * @author Johann Laur
+ * Moving Enemy of pusheen actor that causes death
+ */
 public class BadPusheen extends Objects
 {
     
@@ -13,6 +17,11 @@ public class BadPusheen extends Objects
     private int max;
     private int min;
 
+    /**
+     * @param range how far enemy should move in every direction
+     * @param speed steps forward in each act
+     * @param moving whether the enemy moves or not
+     */
     public BadPusheen(int range, int speed, boolean moving) {
         this.range = range;
         this.speed = speed;
@@ -21,6 +30,7 @@ public class BadPusheen extends Objects
 
     public void act() 
     {
+        // save coordinates after start
         if (startX == 0) {
             startX = getX();
             max = startX + range;

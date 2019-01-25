@@ -1,5 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/**
+ * @author Johann Laur
+ * @deprecated Because the block moves and checks the coordinates instead of the distance
+ * That is why the block moves with the world if the world moves
+ */
 public class oldMovingBlock extends Objects
 {
     private int range;  // value in greenfoot world coordinates between the block should move - startValue +- range

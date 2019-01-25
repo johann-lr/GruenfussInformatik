@@ -53,6 +53,9 @@ public class Scroller extends Actor
     }
 }
 
+    /**
+    * @return int how far the world moved in x direction
+    */
     public int getScrolledX() {
         return scrolledX;
     }

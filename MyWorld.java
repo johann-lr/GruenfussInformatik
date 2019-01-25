@@ -1,21 +1,22 @@
 import greenfoot.*;
 
-public class MyWorld extends greenfoot.World
-{
+/**
+ * Main World class where Pusheen (actor) moves
+ */
+public class MyWorld extends greenfoot.World {
     
-    Scroller scroller;
-    //public int movedRight;
+    Scroller scroller; // scroller class to move world
     public boolean isWorldNew;
     public int newX;
     public int newY;
     public int oldX;
     public int oldY;
     
-    public MyWorld() {    
-        super(1200, 700, 1, false);
+    public MyWorld() {
+        super(1200, 700, 1, false); //false means unbounded world
         GreenfootImage bgImage = new GreenfootImage("bg2.png");
         scroller = new Scroller(this, bgImage);
-        addObject(new Pusheen(),120,450);
+        addObject(new Pusheen(),120,450); // add pusheen with block
         addObject(new Block(),120,550);
         addObject(new Heart(),1150,50);
         addObject(new Heart(),1080,50);
@@ -43,7 +44,7 @@ public class MyWorld extends greenfoot.World
 
         scroller.scroll(x*moveSpeed, y);
     }
-        
+    // generates random blocks and other objects
     public void levelCreator() {
         if (isWorldNew = true) {
             oldX = 120;
@@ -67,11 +68,13 @@ public class MyWorld extends greenfoot.World
                 oldY = newY;
                 if (i == 70) addObject(new EndFlag(), oldX, oldY);
             }
+            // run loop through each object of Block.class
             for (Object obj : getObjects(Block.class)) {
                 int rdm = Greenfoot.getRandomNumber(10) +1;
                 Actor actor = (Actor) obj;
                 int y = actor.getY();
                 int x = actor.getX();
+                // place cookie/donut over Block in some cases (random number)
                 if (rdm == 1) addObject(new Cookie(), x, y - 50);
                 if (rdm == 10) addObject(new Donut(), x, y -50);
             }
@@ -79,6 +82,7 @@ public class MyWorld extends greenfoot.World
         }
     }
     
+    // does not work nvm
     public Scroller getScroller() {
         return scroller;
     }

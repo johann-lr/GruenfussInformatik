@@ -1,8 +1,14 @@
 import greenfoot.*;
 import java.util.List;
 
+/**
+ * @author Emil Jahnke
+ * Hearts top right corner to present actor's lifes
+ */
+
 public class Heart extends Actor
 {
+    // simply remove heart image after death by getting its coordinates
 
     public void act() 
     {

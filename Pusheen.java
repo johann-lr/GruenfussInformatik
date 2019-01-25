@@ -39,8 +39,8 @@ public class Pusheen extends Actor {
         this.noAcceleration = false;
     }
     
-    // act method
     public void act() {
+        // save start position after game start in array
         if (startPos[0] == 0) {
             startPos[0] = getX();
             startPos[1] = getY();
@@ -52,13 +52,16 @@ public class Pusheen extends Actor {
         gravityIsBad();
         eatYummyShit();
         onMovingBlock();
-        // remove falling pusheens
+        // cases that cause death of actor - contact with fire or enemy + y-coordinate under (over) 800
         if (getOneIntersectingObject(Fire.class) != null || getY() > 1500 || getOneIntersectingObject(BadPusheen.class) != null) RIP();
         if (getOneIntersectingObject(EndFlag.class) != null) getWorld().showText("Du hast das Level geschafft!", 600, 350);
         clearPowerUps();
         if (getY() > 800) RIP();
     }
 
+    /**
+     * @return true if pusheen is on Block or moving block - on solid ground
+     */
     private boolean onSolidThing() {
        Actor groundObject = getOneObjectAtOffset(0,35,Block.class);
        Actor movingGround = getOneObjectAtOffset(0, 35, MovingBlock.class);
@@ -66,6 +69,7 @@ public class Pusheen extends Actor {
     }
     
     public void run() {
+        // move if the way is not blocked by block ;)
         if (Greenfoot.isKeyDown("right") && getOneObjectAtOffset(30, 0, Block.class) == null && getOneObjectAtOffset(30, 0, MovingBlock.class) == null) {
             //setImage("pusheen-right.png");
             if (animationCounter == animationSpeed) {
@@ -121,6 +125,7 @@ public class Pusheen extends Actor {
         }
     }
 
+    // 
     public void gravityIsBad() {
         if (onSolidThing()||isJumping) return;
         gravityIsEvenMoreBad++;
@@ -135,25 +140,29 @@ public class Pusheen extends Actor {
         }
     }
 
+    // eat cookies or donuts if pusheen touches them
     public void eatYummyShit() {
+        // remove cookie and increment cookieCounter
         if (getOneIntersectingObject(Cookie.class) != null) {
             Actor toRemove = getOneIntersectingObject(Cookie.class);
             getWorld().removeObject(toRemove);
             cookiePoints++;
-            getWorld().getObjects(Score.class).get(0).incScore(cookiePoints);
+            getWorld().getObjects(Score.class).get(0).incScore(cookiePoints); // get score label and increment its number
         }
+        // eat donut - power up for pusheen
         if (getOneIntersectingObject(Donut.class) != null) {
             Actor toRemove = getOneIntersectingObject(Donut.class);
             getWorld().removeObject(toRemove);
             speed += 3;
             jumpHeight += 10;
             isBoosted = true;
-            timeStamp = System.currentTimeMillis();            
+            timeStamp = System.currentTimeMillis(); // save timestamp
         }
     }
 
     public void clearPowerUps() {
         if (!isBoosted) return;
+        // set pusheen back to her normal and standard values after 10000milliseconds
         if (System.currentTimeMillis() >= timeStamp + 10000) {
             speed = 5;
             jumpHeight = 20;
@@ -167,14 +176,13 @@ public class Pusheen extends Actor {
         int height = world.getHeight();
         gravityIsEvenMoreBad = 0;
         jumpCounter = 0;
-        setLocation(lastSolidX, 30);
+        setLocation(lastSolidX, 30); // set actor to last block's x value
         lifes = lifes -1;
         //System.out.println(lifes);
         if (lifes == 0) {
             world.showText("Du hast verloren! :(", width/2, height/2);
             Greenfoot.delay(100);
-            Greenfoot.setWorld(new MyWorld()); // just create new world after death to respawn easily ;)
-            return;
+            return Greenfoot.setWorld(new MyWorld()); // just create new world after death to respawn easily ;)
         }
         noAcceleration = true;
     }
@@ -204,13 +212,17 @@ public class Pusheen extends Actor {
     }
 
     public void onMovingBlock() {
+        // if pusheen is on moving block
         if (getOneObjectAtOffset(0,35,MovingBlock.class) != null) {
             Actor block = getOneIntersectingObject(MovingBlock.class);
+            // return if one of the keys is pressed to make escaping possible
             if (Greenfoot.isKeyDown("space") || Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("right")) return;
+            // set actor's location over the moving block while she's standing on it
             setLocation(block.getX(), block.getY() +-50);
         }
     }
     
+    // save coords of last block for respawn
     public void lastSolidCoords() {
         if (onSolidThingForCoords()) {
             lastSolidX = getX();
@@ -218,6 +230,10 @@ public class Pusheen extends Actor {
         }
     }
     
+    /**
+     * @return true if pusheen is on moving block/normal block
+     * simular to onSolidThing method
+     */
     private boolean onSolidThingForCoords() {
        Actor groundObject = getOneObjectAtOffset(0,50,Block.class);
        Actor movingGround = getOneObjectAtOffset(0, 50, MovingBlock.class);
