@@ -10,4 +10,5 @@ comment3.params=dsx\ dsy
 comment3.target=void\ scroll(int,\ int)
 comment4.params=
 comment4.target=int\ getScrolledX()
+comment4.text=\n\ @return\ int\ how\ far\ the\ world\ moved\ in\ x\ direction\n
 numComments=5

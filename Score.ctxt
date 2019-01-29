@@ -1,9 +1,8 @@
 #BlueJ class context
 comment0.target=Score
+comment0.text=\n\ @author\ Johann\ Laur,\ greenfoot.org\ example\n\ Score\ label\ to\ show\ how\ many\ cookies\ pusheen\ did\ eat\n
 comment1.params=
 comment1.target=Score()
 comment2.params=score
 comment2.target=void\ incScore(int)
-comment3.params=
-comment3.target=void\ act()
-numComments=4
+numComments=3

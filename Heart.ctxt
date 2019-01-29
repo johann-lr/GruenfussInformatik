@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=Heart
+comment0.text=\n\ @author\ Emil\ Jahnke\n\ Hearts\ top\ right\ corner\ to\ present\ actor's\ lifes\n
 comment1.params=
 comment1.target=void\ act()
 numComments=2

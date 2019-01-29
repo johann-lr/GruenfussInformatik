@@ -1,7 +1,9 @@
 #BlueJ class context
 comment0.target=BadPusheen
+comment0.text=\n\ @author\ Johann\ Laur\n\ Moving\ Enemy\ of\ pusheen\ actor\ that\ causes\ death\n
 comment1.params=range\ speed\ moving
 comment1.target=BadPusheen(int,\ int,\ boolean)
+comment1.text=\n\ @param\ range\ how\ far\ enemy\ should\ move\ in\ every\ direction\n\ @param\ speed\ steps\ forward\ in\ each\ act\n\ @param\ moving\ whether\ the\ enemy\ moves\ or\ not\n
 comment2.params=
 comment2.target=void\ act()
 comment3.params=

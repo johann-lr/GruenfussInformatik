@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=oldMovingBlock
+comment0.text=\n\ @author\ Johann\ Laur\n\ @deprecated\ Because\ the\ block\ moves\ and\ checks\ the\ coordinates\ instead\ of\ the\ distance\n\ That\ is\ why\ the\ block\ moves\ with\ the\ world\ if\ the\ world\ moves\n
 comment1.params=range\ speed\ moving\ vertical\ startDirection
 comment1.target=oldMovingBlock(int,\ int,\ boolean,\ boolean,\ boolean)
 comment2.params=

@@ -182,7 +182,8 @@ public class Pusheen extends Actor {
         if (lifes == 0) {
             world.showText("Du hast verloren! :(", width/2, height/2);
             Greenfoot.delay(100);
-            return Greenfoot.setWorld(new MyWorld()); // just create new world after death to respawn easily ;)
+            Greenfoot.setWorld(new MyWorld()); // just create new world after death to respawn easily ;)
+            return;
         }
         noAcceleration = true;
     }
