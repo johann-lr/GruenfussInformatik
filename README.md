@@ -11,6 +11,6 @@ Greenfoot Readme: README.txt
 
 ### Kleingedrucktes
 
-pusheen.com - Claire Belton & Andrew Duff
-clipart-library.com (some images)
+pusheen.com - Claire Belton & Andrew Duff <br>
+clipart-library.com (some images) <br>
 http://worldartsme.com/stretch/landscape-clipart.html (Hintergrund)
